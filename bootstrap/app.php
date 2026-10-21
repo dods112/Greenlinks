@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use App\Http\Middleware\EnsureUserHasRole;
 use Illuminate\Foundation\Application;
