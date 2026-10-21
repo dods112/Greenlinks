@@ -1,66 +1,31 @@
-<?php
+﻿<?php
 
 namespace App\Policies;
 
 use App\Models\EnvironmentalReport;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
+use App\UserRole;
 
 class ReportPolicy
 {
-    /**
-     * Determine whether the user can view any models.
-     */
     public function viewAny(User $user): bool
     {
-        return false;
+        return in_array(UserRole::tryFrom($user->role), [UserRole::Reviewer, UserRole::Administrator], true);
     }
 
-    /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, EnvironmentalReport $environmentalReport): bool
+    public function view(User $user, EnvironmentalReport $report): bool
     {
-        return false;
+        return $user->id === $report->user_id
+            || $this->viewAny($user);
     }
 
-    /**
-     * Determine whether the user can create models.
-     */
     public function create(User $user): bool
     {
-        return false;
+        return in_array(UserRole::tryFrom($user->role), [UserRole::Resident, UserRole::Administrator], true);
     }
 
-    /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, EnvironmentalReport $environmentalReport): bool
+    public function review(User $user, EnvironmentalReport $report): bool
     {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can delete the model.
-     */
-    public function delete(User $user, EnvironmentalReport $environmentalReport): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, EnvironmentalReport $environmentalReport): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, EnvironmentalReport $environmentalReport): bool
-    {
-        return false;
+        return $this->viewAny($user);
     }
 }
