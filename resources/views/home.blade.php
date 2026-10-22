@@ -33,10 +33,30 @@
         </aside>
     </section>
 
+    {{-- Live statistics from the database --}}
+    <section aria-labelledby="stats-heading" class="border-t border-stone-200 py-10">
+        <h2 id="stats-heading" class="text-2xl font-bold text-emerald-950">Reporting activity</h2>
+        <p class="mt-2 text-sm text-stone-500">Counts are read from the GreenLink database. They do not include personal details.</p>
+        <dl class="mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-lg border border-stone-200 bg-white p-6">
+                <dt class="text-sm font-medium text-stone-600">Concerns submitted</dt>
+                <dd class="mt-2 text-3xl font-bold text-emerald-900">{{ number_format($totalReports) }}</dd>
+            </div>
+            <div class="rounded-lg border border-stone-200 bg-white p-6">
+                <dt class="text-sm font-medium text-stone-600">Open or under review</dt>
+                <dd class="mt-2 text-3xl font-bold text-emerald-900">{{ number_format($openReports) }}</dd>
+            </div>
+            <div class="rounded-lg border border-stone-200 bg-white p-6">
+                <dt class="text-sm font-medium text-stone-600">Marked resolved by staff</dt>
+                <dd class="mt-2 text-3xl font-bold text-emerald-900">{{ number_format($resolvedReports) }}</dd>
+            </div>
+        </dl>
+    </section>
+
     {{-- How it works --}}
     <section class="border-t border-stone-200 py-12">
         <h2 class="text-2xl font-bold text-emerald-950">How GreenLink works</h2>
-        <ol class="mt-8 grid gap-6 md:grid-cols-3">
+        <ol class="mt-8 grid gap-6 md:grid-cols-4">
             <li class="rounded-lg border border-stone-200 bg-white p-6">
                 <span class="text-sm font-semibold text-emerald-700">Step 1</span>
                 <h3 class="mt-2 font-semibold text-stone-900">Submit</h3>
@@ -45,14 +65,32 @@
             <li class="rounded-lg border border-stone-200 bg-white p-6">
                 <span class="text-sm font-semibold text-emerald-700">Step 2</span>
                 <h3 class="mt-2 font-semibold text-stone-900">Review</h3>
-                <p class="mt-2 text-sm text-stone-600">Authorized reviewers check the report. They may ask you for more information, and you will be notified of each status change.</p>
+                <p class="mt-2 text-sm text-stone-600">Authorized reviewers check the report and may ask you for more information.</p>
             </li>
             <li class="rounded-lg border border-stone-200 bg-white p-6">
                 <span class="text-sm font-semibold text-emerald-700">Step 3</span>
                 <h3 class="mt-2 font-semibold text-stone-900">Track</h3>
-                <p class="mt-2 text-sm text-stone-600">Follow the status history on your tracking page. A report is marked resolved only after staff confirm it.</p>
+                <p class="mt-2 text-sm text-stone-600">Follow every status change and its reason on your tracking page.</p>
+            </li>
+            <li class="rounded-lg border border-stone-200 bg-white p-6">
+                <span class="text-sm font-semibold text-emerald-700">Step 4</span>
+                <h3 class="mt-2 font-semibold text-stone-900">Resolve</h3>
+                <p class="mt-2 text-sm text-stone-600">A report is marked resolved only when staff confirm the outcome, never just because it was viewed.</p>
             </li>
         </ol>
+    </section>
+
+    {{-- What you can report --}}
+    <section class="border-t border-stone-200 py-12">
+        <h2 class="text-2xl font-bold text-emerald-950">What you can report</h2>
+        <ul class="mt-6 grid gap-3 text-stone-700 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach (['Illegal dumping or solid waste', 'Water pollution in rivers or coastal areas', 'Air quality and burning of waste', 'Damaged or cleared mangrove and forest areas', 'Fish kills or aquaculture concerns', 'Other environmental concerns'] as $item)
+                <li class="flex items-start gap-3 rounded-md bg-white px-4 py-3 ring-1 ring-stone-200">
+                    <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-emerald-600"></span>
+                    <span>{{ $item }}</span>
+                </li>
+            @endforeach
+        </ul>
     </section>
 
     {{-- Community categories --}}
@@ -69,11 +107,21 @@
         </div>
     </section>
 
+    {{-- Trust and verification --}}
+    <section class="border-t border-stone-200 py-12">
+        <div class="rounded-lg bg-emerald-950 p-8 text-emerald-50">
+            <h2 class="text-xl font-bold text-white">How information is verified</h2>
+            <p class="mt-3 max-w-3xl text-emerald-100">
+                Every resource and announcement shows its source and the date it was last verified. GreenLink organizes reports and information. It does not dispatch personnel or contact government offices on its own.
+            </p>
+        </div>
+    </section>
+
     {{-- Announcements --}}
     <section class="border-t border-stone-200 py-12">
         <h2 class="text-2xl font-bold text-emerald-950">Latest announcements and advisories</h2>
         <div class="mt-6 rounded-lg border border-dashed border-stone-300 bg-white p-8 text-center">
-            <p class="text-stone-600">No published announcements right now. Official notices will appear here once staff publish them, with their source and date.</p>
+            <p class="text-stone-600">No published announcements right now. Official notices will appear here with their source and date once staff publish them.</p>
         </div>
     </section>
 </x-public-layout>
