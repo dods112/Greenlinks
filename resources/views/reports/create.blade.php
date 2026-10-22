@@ -68,6 +68,35 @@
                 @error('location_text') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
             </div>
 
+            <div>
+                <label class="block text-sm font-semibold text-stone-900">Pin the location on the map (optional)</label>
+                <p class="mt-1 text-xs text-stone-500">Click the map to place a pin. Leave it empty if you are unsure.</p>
+                <div id="picker" class="mt-2 h-72 w-full overflow-hidden rounded-lg border border-stone-300"></div>
+                <input type="hidden" name="latitude" id="latitude" value="{{ old('latitude') }}">
+                <input type="hidden" name="longitude" id="longitude" value="{{ old('longitude') }}">
+                @error('latitude') <p class="mt-1 text-sm text-red-600">{{ $message }}</p> @enderror
+            </div>
+
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+            <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+            <script>
+                (function () {
+                    const map = L.map('picker').setView([9.0742, 126.1980], 13);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+                    let marker = null;
+                    const lat = document.getElementById('latitude');
+                    const lng = document.getElementById('longitude');
+                    if (lat.value && lng.value) {
+                        marker = L.marker([lat.value, lng.value]).addTo(map);
+                    }
+                    map.on('click', function (e) {
+                        if (marker) marker.remove();
+                        marker = L.marker(e.latlng).addTo(map);
+                        lat.value = e.latlng.lat.toFixed(7);
+                        lng.value = e.latlng.lng.toFixed(7);
+                    });
+                })();
+            </script>
             <div class="flex items-center justify-between gap-4">
                 <a href="{{ route('reports.index') }}" class="text-sm font-semibold text-stone-600 hover:text-stone-900">Cancel</a>
                 <button type="submit" class="rounded-lg bg-teal-700 px-6 py-3 font-semibold text-white shadow-lg shadow-teal-700/25 hover:bg-teal-800">Submit report</button>
