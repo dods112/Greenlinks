@@ -1,23 +1,23 @@
 <x-public-layout title="Home">
     {{-- Hero --}}
-    <section class="grid items-center gap-10 overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-sky-50 via-emerald-50 to-emerald-100 p-8 shadow-sm lg:grid-cols-12 lg:p-14">
+    <section class="grid items-center gap-10 overflow-hidden rounded-3xl border border-teal-100 bg-gradient-to-br from-sky-50 via-teal-50 to-teal-100 p-8 shadow-sm lg:grid-cols-12 lg:p-14">
         <div class="lg:col-span-6">
-            <p class="text-xs font-semibold uppercase tracking-widest text-emerald-800">Connecting people &middot; Resources &middot; A sustainable future</p>
-            <h1 class="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-emerald-950 xl:text-5xl">
+            <p class="text-xs font-semibold uppercase tracking-widest text-teal-800">Connecting people &middot; Resources &middot; A sustainable future</p>
+            <h1 class="mt-5 text-4xl font-extrabold leading-tight tracking-tight text-teal-950 xl:text-5xl">
                 Your Community,
-                <span class="block text-emerald-600">Our Shared Environment</span>
+                <span class="block text-teal-600">Our Shared Environment</span>
             </h1>
             <p class="mt-6 max-w-xl text-lg leading-relaxed text-stone-700">
                 GreenLink provides verified local information, community resources, and a simple way to report environmental concerns for a cleaner, safer, and more sustainable future.
             </p>
             <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href="{{ route('register') }}" class="rounded-lg bg-emerald-700 px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-emerald-700/25 transition hover:-translate-y-0.5 hover:bg-emerald-800">Report an Environmental Concern &rarr;</a>
-                <a href="#resources" class="rounded-lg border border-emerald-700 bg-white px-6 py-3.5 text-center font-semibold text-emerald-800 transition hover:-translate-y-0.5 hover:bg-emerald-50">Explore Resources</a>
+                <a href="{{ route('register') }}" class="rounded-lg bg-teal-700 px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-teal-700/25 transition hover:-translate-y-0.5 hover:bg-teal-800">Report an Environmental Concern &rarr;</a>
+                <a href="#resources" class="rounded-lg border border-teal-700 bg-white px-6 py-3.5 text-center font-semibold text-teal-800 transition hover:-translate-y-0.5 hover:bg-teal-50">Explore Resources</a>
             </div>
         </div>
 
         <div class="lg:col-span-6">
-            <div class="overflow-hidden rounded-2xl shadow-xl ring-1 ring-emerald-900/5">
+            <div class="overflow-hidden rounded-2xl shadow-xl ring-1 ring-teal-900/5">
                 @include('components.island-model')
             </div>
         </div>
@@ -36,8 +36,8 @@
         @endphp
 
         @foreach ($modules as [$name, $desc, $link, $icon])
-            <a href="{{ $link }}" class="group flex items-center gap-4 rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md">
-                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-700 text-white">
+            <a href="{{ $link }}" class="group flex items-center gap-4 rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300 hover:shadow-md">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-700 text-white">
                     @switch($icon)
                         @case('leaf')
                             <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14zM5 19l7-7"/></svg>
@@ -60,7 +60,7 @@
                     <span class="block text-sm font-semibold text-stone-900">{{ $name }}</span>
                     <span class="mt-1 block text-xs text-stone-500">{{ $desc }}</span>
                 </span>
-                <span class="shrink-0 text-emerald-700 transition group-hover:translate-x-0.5">&rarr;</span>
+                <span class="shrink-0 text-teal-700 transition group-hover:translate-x-0.5">&rarr;</span>
             </a>
         @endforeach
     </section>
@@ -85,10 +85,10 @@
         <div class="flex flex-col rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
             <h2 class="font-bold text-stone-900">How GreenLink Works</h2>
             <ol class="mt-5 flex-1 space-y-5 text-sm">
-                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 font-bold text-white">1</span><span><span class="block font-semibold text-stone-900">Find information</span><span class="mt-1 block leading-relaxed text-stone-600">Search for resources, facilities, and useful guides.</span></span></li>
-                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 font-bold text-white">2</span><span><span class="block font-semibold text-stone-900">Report concerns</span><span class="mt-1 block leading-relaxed text-stone-600">Submit environmental issues with location and details.</span></span></li>
-                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 font-bold text-white">3</span><span><span class="block font-semibold text-stone-900">Track progress</span><span class="mt-1 block leading-relaxed text-stone-600">Check each status change and its reason on your tracking page.</span></span></li>
-                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-800 font-bold text-white">4</span><span><span class="block font-semibold text-stone-900">Build a greener community</span><span class="mt-1 block leading-relaxed text-stone-600">Resolved means staff confirmed the outcome.</span></span></li>
+                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-800 font-bold text-white">1</span><span><span class="block font-semibold text-stone-900">Find information</span><span class="mt-1 block leading-relaxed text-stone-600">Search for resources, facilities, and useful guides.</span></span></li>
+                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-800 font-bold text-white">2</span><span><span class="block font-semibold text-stone-900">Report concerns</span><span class="mt-1 block leading-relaxed text-stone-600">Submit environmental issues with location and details.</span></span></li>
+                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-800 font-bold text-white">3</span><span><span class="block font-semibold text-stone-900">Track progress</span><span class="mt-1 block leading-relaxed text-stone-600">Check each status change and its reason on your tracking page.</span></span></li>
+                <li class="flex gap-3"><span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-teal-800 font-bold text-white">4</span><span><span class="block font-semibold text-stone-900">Build a greener community</span><span class="mt-1 block leading-relaxed text-stone-600">Resolved means staff confirmed the outcome.</span></span></li>
             </ol>
         </div>
     </section>
