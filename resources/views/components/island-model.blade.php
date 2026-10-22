@@ -1,7 +1,7 @@
-<div class="flex w-full items-center justify-center overflow-hidden rounded-xl" style="height: 420px;">
+<div class="overflow-hidden rounded-xl" style="height: 420px;">
     <iframe
         title="The Wandering Island"
-        class="block w-full"
+        class="w-full"
         style="height: 560px; margin-top: -80px; border: 0;"
         allowfullscreen
         allow="autoplay; fullscreen; xr-spatial-tracking"
