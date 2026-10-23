@@ -9,6 +9,9 @@ class MapController extends Controller
 {
     public function __invoke(): View
     {
-        return view('map.index', ['markers' => PublicMapMarkers::reports()]);
+        return view('map.index', [
+            'markers' => PublicMapMarkers::reports(),
+            'trails' => PublicMapMarkers::trails(),
+        ]);
     }
 }

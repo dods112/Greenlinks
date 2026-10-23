@@ -9,6 +9,9 @@ class ApiMapController extends Controller
 {
     public function __invoke(): JsonResponse
     {
-        return response()->json(PublicMapMarkers::reports());
+        return response()->json([
+            'markers' => PublicMapMarkers::reports(),
+            'trails' => PublicMapMarkers::trails(),
+        ]);
     }
 }

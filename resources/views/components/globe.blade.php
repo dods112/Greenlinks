@@ -6,8 +6,10 @@
     (function () {
         if (!window.Cesium) return;
 
+        const maptilerKey = @json(config('services.maptiler.key'));
+
         const viewer = new Cesium.Viewer('globe', {
-            imageryProvider: false,
+            baseLayer: false,
             baseLayerPicker: false,
             geocoder: false,
             homeButton: false,
@@ -21,23 +23,35 @@
             terrainProvider: new Cesium.EllipsoidTerrainProvider(),
         });
 
-        viewer.imageryLayers.addImageryProvider(
-            new Cesium.OpenStreetMapImageryProvider({ url: 'https://tile.openstreetmap.org/' })
-        );
+        // Remove any default imagery so the Cesium ion watermark doesn't appear.
+        viewer.imageryLayers.removeAll();
 
+        if (maptilerKey) {
+            viewer.imageryLayers.addImageryProvider(
+                new Cesium.UrlTemplateImageryProvider({
+                    url: 'https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=' + maptilerKey,
+                    maximumLevel: 18,
+                    credit: '© MapTiler © OpenStreetMap contributors',
+                })
+            );
+        }
+
+        viewer.scene.globe.baseColor = Cesium.Color.fromCssColorString('#2a8fbf');
+        viewer.scene.globe.enableLighting = false;
+        viewer.scene.skyAtmosphere.show = true;
+        viewer.scene.backgroundColor = Cesium.Color.fromCssColorString('#06202a');
         viewer.cesiumWidget.creditContainer.style.display = 'none';
+
         viewer.scene.screenSpaceCameraController.enableZoom = false;
 
         viewer.camera.setView({
-            destination: Cesium.Cartesian3.fromDegrees(126.1980, 9.0742, 9000000),
+            destination: Cesium.Cartesian3.fromDegrees(126.1980, 9.0742, 14000000),
         });
 
-        // Slow rotation for the hero. Decorative only, no data.
         viewer.scene.postRender.addEventListener(function () {
             viewer.camera.rotateRight(0.0003);
         });
 
-        // Button in the hero links to the local map.
         viewer.container.addEventListener('dblclick', function () {
             window.location.href = @json(route('map'));
         });
