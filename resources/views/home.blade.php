@@ -12,13 +12,13 @@
             </p>
             <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href="{{ route('register') }}" class="rounded-lg bg-teal-700 px-6 py-3.5 text-center font-semibold text-white shadow-lg shadow-teal-700/25 transition hover:-translate-y-0.5 hover:bg-teal-800">Report an Environmental Concern &rarr;</a>
-                <a href="#resources" class="rounded-lg border border-teal-700 bg-white px-6 py-3.5 text-center font-semibold text-teal-800 transition hover:-translate-y-0.5 hover:bg-teal-50">Explore Resources</a>
+                <a href="{{ route('map') }}" class="rounded-lg border border-teal-700 bg-white px-6 py-3.5 text-center font-semibold text-teal-800 transition hover:-translate-y-0.5 hover:bg-teal-50">Open local map</a>
             </div>
         </div>
 
         <div class="lg:col-span-6">
             <div class="overflow-hidden rounded-2xl shadow-xl ring-1 ring-teal-900/5">
-                @include('components.island-model')
+                @include('components.globe')
             </div>
         </div>
     </section>

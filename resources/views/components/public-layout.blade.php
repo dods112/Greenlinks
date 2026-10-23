@@ -21,7 +21,7 @@
 
             <div class="hidden items-center gap-5 whitespace-nowrap text-sm text-stone-700 xl:flex">
                 <a href="{{ route('home') }}" class="border-b-2 border-teal-600 pb-1 font-semibold text-teal-800">Home</a>
-                <a href="#map" class="hover:text-teal-700">Map</a>
+                <a href="{{ route('map') }}" class="hover:text-teal-700">Map</a>
                 <a href="#resources" class="hover:text-teal-700">Resources</a>
                 <a href="{{ route('register') }}" class="hover:text-teal-700">Environmental Reports</a>
                 <a href="#resources" class="hover:text-teal-700">Agriculture &amp; Aquaculture</a>

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\PublicMapMarkers;
+use Illuminate\View\View;
 
 class MapController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
-    public function __invoke(Request $request)
+    public function __invoke(): View
     {
-        //
+        return view('map.index', ['markers' => PublicMapMarkers::reports()]);
     }
 }
